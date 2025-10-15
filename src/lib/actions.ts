@@ -1,6 +1,11 @@
 'use server';
 
 import { z } from 'zod';
+import { Resend } from 'resend';
+import { ContactFormEmail } from '@/components/emails/contact-form-email';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const toEmail = process.env.RESEND_TO_EMAIL;
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -32,13 +37,37 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
+  
+  if (!toEmail) {
+    console.error('RESEND_TO_EMAIL is not set');
+    return {
+      status: 'error',
+      message: 'Server configuration error. Please try again later.',
+      errors: null,
+    };
+  }
 
-  // In a real application, you would send an email or save to a database.
-  console.log('New contact form submission:', validatedFields.data);
+  try {
+    const { name, email, message } = validatedFields.data;
+    await resend.emails.send({
+      from: 'Portfolio Contact Form <onboarding@resend.dev>',
+      to: toEmail,
+      subject: 'New message from your portfolio',
+      reply_to: email,
+      react: ContactFormEmail({ name, email, message }),
+    });
 
-  return {
-    status: 'success',
-    message: 'Thank you for your message! I will get back to you soon.',
-    errors: null,
-  };
+    return {
+      status: 'success',
+      message: 'Thank you for your message! I will get back to you soon.',
+      errors: null,
+    };
+  } catch (error) {
+    console.error('Email sending error:', error);
+    return {
+      status: 'error',
+      message: 'Something went wrong. Please try again.',
+      errors: null,
+    };
+  }
 }

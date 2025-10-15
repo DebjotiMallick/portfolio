@@ -1,7 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { useEffect } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useFormStatus } from 'react-dom';
 import Link from 'next/link';
 import { Briefcase, Github, Linkedin, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -23,7 +23,7 @@ function SubmitButton() {
 
 export function Footer() {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(submitContactForm, {
+  const [state, formAction] = useActionState(submitContactForm, {
     status: null,
     message: '',
     errors: null,
@@ -35,6 +35,7 @@ export function Footer() {
         title: 'Message Sent!',
         description: state.message,
       });
+      // TODO: Reset form
     } else if (state.status === 'error') {
       toast({
         title: 'Error',
@@ -51,7 +52,7 @@ export function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Briefcase className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold font-headline">SkillStack Portfolio</span>
+              <span className="text-2xl font-bold font-headline">Portfolio</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-sm">
               Let's connect! Feel free to reach out for collaborations, questions, or just to say hello.
@@ -88,7 +89,7 @@ export function Footer() {
           </div>
         </div>
         <div className="text-center mt-12 pt-8 border-t">
-          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} SkillStack Portfolio. All Rights Reserved.</p>
+          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Debjoti Mallick. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

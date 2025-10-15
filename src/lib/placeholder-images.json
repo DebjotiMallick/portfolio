@@ -17,24 +17,6 @@
       "description": "Dashboard with graphs and charts for monitoring",
       "imageUrl": "https://picsum.photos/seed/project3/600/400",
       "imageHint": "monitoring dashboard"
-    },
-    {
-      "id": "blog-1",
-      "description": "A person writing in a notebook, representing blogging",
-      "imageUrl": "https://picsum.photos/seed/blog1/600/400",
-      "imageHint": "writing blog"
-    },
-    {
-      "id": "blog-2",
-      "description": "A server room, representing infrastructure topics",
-      "imageUrl": "https://picsum.photos/seed/blog2/600/400",
-      "imageHint": "server room"
-    },
-    {
-      "id": "blog-3",
-      "description": "Gears and cogs, representing system integration",
-      "imageUrl": "https://picsum.photos/seed/blog3/600/400",
-      "imageHint": "gears integration"
     }
   ]
 }

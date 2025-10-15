@@ -30,7 +30,7 @@ const HeroSection = () => (
         Crafting Resilient & Efficient Systems
       </h1>
       <p className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground mb-8">
-        I'm a Senior SRE/DevOps Engineer based at IBM, passionate about building scalable infrastructure and automating complex workflows.
+        I'm Debjoti Mallick, a Senior SRE/DevOps Engineer based at IBM, passionate about building scalable infrastructure and automating complex workflows.
       </p>
       <div className="flex justify-center gap-4 mb-8">
         <Button asChild size="lg">

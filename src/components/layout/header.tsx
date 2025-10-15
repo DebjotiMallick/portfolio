@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { navLinks } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export function Header() {
   const pathname = usePathname();
@@ -21,7 +22,7 @@ export function Header() {
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Briefcase className="h-6 w-6 text-primary" />
             <span className="font-bold font-headline sm:inline-block">
-              SkillStack Portfolio
+              Portfolio
             </span>
           </Link>
         </div>
@@ -42,6 +43,7 @@ export function Header() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end space-x-2">
+          <ThemeToggle />
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="md:hidden">
@@ -52,7 +54,7 @@ export function Header() {
             <SheetContent side="left" className="pr-0">
               <Link href="/" className="mr-6 flex items-center space-x-2 mb-8" onClick={() => setSheetOpen(false)}>
                 <Briefcase className="h-6 w-6 text-primary" />
-                <span className="font-bold font-headline">SkillStack Portfolio</span>
+                <span className="font-bold font-headline">Portfolio</span>
               </Link>
               <div className="flex flex-col space-y-6">
                 {navLinks.map((link) => (
